@@ -83,8 +83,7 @@ Development files for %{name}.
 
 %prep
 %define __scm git_am
-%autosetup -n -v %{name}-%{commit}
-
+%autosetup -v -n %{name}-%{commit}/
 
 %build
 
@@ -95,8 +94,6 @@ Development files for %{name}.
 export CFLAGS="%{optflags} -Wno-error=format="
 export CXXFLAGS="%{optflags} -Wno-error=format="
 %endif
-meson build
-ninja -C build
 #%meson
 #%meson_build
 
