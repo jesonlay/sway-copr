@@ -3,15 +3,15 @@
 #  - set commit to desired commit hash
 #  - bump Release
 
-#global gitdate  20190519
-%global commit   0.7.0
+#global gitdate  20190808
+%global commit   0.7.2
 
 %global scommit  %(c=%{commit}; echo ${c:0:7})
 %global gitrel   %{?gitdate:.%{gitdate}git%{scommit}}
 %global gitver   %{?gitdate:-%{gitdate}git%{scommit}}
 
 Name:           waybar 
-Version:        0.7.0
+Version:        0.7.2
 Release:        1%{?gitrel}%{?dist}
 Summary:        Highly customizable Wayland bar for Sway and Wlroots based compositors 
 License:        MIT

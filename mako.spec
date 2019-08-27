@@ -1,11 +1,11 @@
-%global commit  v1.1
+%global commit  v1.4
 %global gitdate %{nil}
 %global gitrel  %{nil}
 %global gitver  %{nil}
 
 
 Name:		mako
-Version:	1.3
+Version:	1.4
 Release:	0%{?dist}
 Summary:	A lightweight notification daemon for Wayland.
 

@@ -1,5 +1,5 @@
 Name:    rofi
-Version: 1.5.2
+Version: 1.5.4
 Release: 1%{?dist}
 Summary: A window switcher, run dialog and dmenu replacement
 
