@@ -83,7 +83,7 @@ Development files for %{name}.
 
 %prep
 %define __scm git_am
-%autosetup -n %{name}-%{commit} -p 1
+%autosetup -n -v %{name}-%{commit}
 
 
 %build
