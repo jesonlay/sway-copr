@@ -95,8 +95,10 @@ Development files for %{name}.
 export CFLAGS="%{optflags} -Wno-error=format="
 export CXXFLAGS="%{optflags} -Wno-error=format="
 %endif
-%meson
-%meson_build
+meson build
+ninja -C build
+#%meson
+#%meson_build
 
 
 %install
