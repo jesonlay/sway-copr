@@ -1,0 +1,35 @@
+From c4406f36670237428260bf83a0660364a1eaaaba Mon Sep 17 00:00:00 2001
+From: Aleksei Bavshin <alebastr89@gmail.com>
+Date: Fri, 14 Jun 2019 06:44:11 -0700
+Subject: [PATCH] fix(tray): set item_is_menu for libappindicator applets
+
+---
+ src/modules/sni/item.cpp | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/src/modules/sni/item.cpp b/src/modules/sni/item.cpp
+index 0d7ab69..a174c5f 100644
+--- a/src/modules/sni/item.cpp
++++ b/src/modules/sni/item.cpp
+@@ -130,6 +130,9 @@ void Item::setProperty(const Glib::ustring& name, Glib::VariantBase& value) {
+       menu = get_variant<std::string>(value);
+     } else if (name == "ItemIsMenu") {
+       item_is_menu = get_variant<bool>(value);
++    } else if (name == "XAyatanaLabel") {
++      // libappindicator applets do not have Activate method
++      item_is_menu = true;
+     }
+   } catch (const Glib::Error& err) {
+     spdlog::warn("Failed to set tray item property: {}.{}, value = {}, err = {}",
+@@ -334,7 +337,7 @@ void Item::makeMenu(GdkEventButton* const& ev) {
+ bool Item::handleClick(GdkEventButton* const& ev) {
+   auto parameters = Glib::VariantContainerBase::create_tuple(
+       {Glib::Variant<int>::create(ev->x), Glib::Variant<int>::create(ev->y)});
+-  if ((ev->button == 1 && (item_is_menu || !menu.empty())) || ev->button == 3) {
++  if ((ev->button == 1 && item_is_menu) || ev->button == 3) {
+     makeMenu(ev);
+     if (gtk_menu != nullptr) {
+ #if GTK_CHECK_VERSION(3, 22, 0)
+-- 
+2.21.0
+
